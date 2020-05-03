@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		4539DAAA24335BDC00BE0B52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DAA924335BDC00BE0B52 /* AppDelegate.swift */; };
 		4539DAAC24335BDC00BE0B52 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DAAB24335BDC00BE0B52 /* SceneDelegate.swift */; };
-		4539DAAE24335BDC00BE0B52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DAAD24335BDC00BE0B52 /* ViewController.swift */; };
-		4539DAB124335BDC00BE0B52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4539DAAF24335BDC00BE0B52 /* Main.storyboard */; };
 		4539DAB324335BDD00BE0B52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4539DAB224335BDD00BE0B52 /* Assets.xcassets */; };
 		4539DAB624335BDD00BE0B52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4539DAB424335BDD00BE0B52 /* LaunchScreen.storyboard */; };
 		4539DAC124335BDE00BE0B52 /* Firestore_Sample_TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DAC024335BDE00BE0B52 /* Firestore_Sample_TodoTests.swift */; };
+		45E8535D245F0CF1009E35C1 /* TodoListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */; };
+		45E8535F245F0CFF009E35C1 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */; };
+		45E85361245F0F08009E35C1 /* FireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E85360245F0F08009E35C1 /* FireStoreRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,14 +31,15 @@
 		4539DAA624335BDC00BE0B52 /* Firestore-Sample-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Firestore-Sample-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4539DAA924335BDC00BE0B52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4539DAAB24335BDC00BE0B52 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4539DAAD24335BDC00BE0B52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4539DAB024335BDC00BE0B52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4539DAB224335BDD00BE0B52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4539DAB524335BDD00BE0B52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4539DAB724335BDD00BE0B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4539DABC24335BDE00BE0B52 /* Firestore-Sample-TodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Firestore-Sample-TodoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4539DAC024335BDE00BE0B52 /* Firestore_Sample_TodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firestore_Sample_TodoTests.swift; sourceTree = "<group>"; };
 		4539DAC224335BDE00BE0B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodoListViewController.storyboard; sourceTree = "<group>"; };
+		45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
+		45E85360245F0F08009E35C1 /* FireStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +81,11 @@
 		4539DAA824335BDC00BE0B52 /* Firestore-Sample-Todo */ = {
 			isa = PBXGroup;
 			children = (
+				45E8535A245F0CBD009E35C1 /* Model */,
+				45E85359245F0CBA009E35C1 /* View */,
+				45E85358245F0CB8009E35C1 /* ViewModel */,
 				4539DAA924335BDC00BE0B52 /* AppDelegate.swift */,
 				4539DAAB24335BDC00BE0B52 /* SceneDelegate.swift */,
-				4539DAAD24335BDC00BE0B52 /* ViewController.swift */,
-				4539DAAF24335BDC00BE0B52 /* Main.storyboard */,
 				4539DAB224335BDD00BE0B52 /* Assets.xcassets */,
 				4539DAB424335BDD00BE0B52 /* LaunchScreen.storyboard */,
 				4539DAB724335BDD00BE0B52 /* Info.plist */,
@@ -97,6 +100,30 @@
 				4539DAC224335BDE00BE0B52 /* Info.plist */,
 			);
 			path = "Firestore-Sample-TodoTests";
+			sourceTree = "<group>";
+		};
+		45E85358245F0CB8009E35C1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		45E85359245F0CBA009E35C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */,
+				45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		45E8535A245F0CBD009E35C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				45E85360245F0F08009E35C1 /* FireStoreRepository.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,7 +209,7 @@
 			files = (
 				4539DAB624335BDD00BE0B52 /* LaunchScreen.storyboard in Resources */,
 				4539DAB324335BDD00BE0B52 /* Assets.xcassets in Resources */,
-				4539DAB124335BDC00BE0B52 /* Main.storyboard in Resources */,
+				45E8535D245F0CF1009E35C1 /* TodoListViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,9 +227,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4539DAAE24335BDC00BE0B52 /* ViewController.swift in Sources */,
+				45E8535F245F0CFF009E35C1 /* TodoListViewController.swift in Sources */,
 				4539DAAA24335BDC00BE0B52 /* AppDelegate.swift in Sources */,
 				4539DAAC24335BDC00BE0B52 /* SceneDelegate.swift in Sources */,
+				45E85361245F0F08009E35C1 /* FireStoreRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,14 +253,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4539DAAF24335BDC00BE0B52 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4539DAB024335BDC00BE0B52 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4539DAB424335BDD00BE0B52 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
