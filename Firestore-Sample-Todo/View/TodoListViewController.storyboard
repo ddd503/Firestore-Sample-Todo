@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gAN-6G-9fY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F1z-gI-jXK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -7,20 +7,65 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Todo List View Controller-->
+        <!--Todo List-->
         <scene sceneID="G2f-4t-Exx">
             <objects>
                 <viewController storyboardIdentifier="TodoListViewController" id="gAN-6G-9fY" customClass="TodoListViewController" customModule="Firestore_Sample_Todo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ygL-gr-CI7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBq-Ej-ZDk">
+                                <rect key="frame" x="0.0" y="88" width="414" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="5ye-Uh-Abq"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JQt-ld-tee">
+                                <rect key="frame" x="0.0" y="148" width="414" height="748"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="JQt-ld-tee" firstAttribute="leading" secondItem="Gix-Y5-EOd" secondAttribute="leading" id="7Su-q6-SMg"/>
+                            <constraint firstItem="cBq-Ej-ZDk" firstAttribute="width" secondItem="ygL-gr-CI7" secondAttribute="width" id="FnL-Q2-4bx"/>
+                            <constraint firstItem="cBq-Ej-ZDk" firstAttribute="top" secondItem="Gix-Y5-EOd" secondAttribute="top" id="G6O-mY-tS3"/>
+                            <constraint firstItem="Gix-Y5-EOd" firstAttribute="trailing" secondItem="JQt-ld-tee" secondAttribute="trailing" id="MW0-jV-UDO"/>
+                            <constraint firstAttribute="bottom" secondItem="JQt-ld-tee" secondAttribute="bottom" id="UpD-qp-4Z9"/>
+                            <constraint firstItem="JQt-ld-tee" firstAttribute="top" secondItem="cBq-Ej-ZDk" secondAttribute="bottom" id="luE-Yl-2a4"/>
+                            <constraint firstItem="cBq-Ej-ZDk" firstAttribute="centerX" secondItem="ygL-gr-CI7" secondAttribute="centerX" id="yoY-F6-wVP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Gix-Y5-EOd"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Todo List" id="Jes-bB-4wc"/>
+                    <connections>
+                        <outlet property="categoryHeaderBaseView" destination="cBq-Ej-ZDk" id="vNS-gr-c6E"/>
+                        <outlet property="todoListView" destination="JQt-ld-tee" id="g5M-Q4-Aze"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SQf-or-kx8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="257" y="149"/>
+            <point key="canvasLocation" x="1166.6666666666667" y="148.66071428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JS7-tY-nRl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F1z-gI-jXK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="W9x-rJ-Wxq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gAN-6G-9fY" kind="relationship" relationship="rootViewController" id="Sn6-nA-DX8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Vr-KI-OdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="256.52173913043481" y="148.66071428571428"/>
         </scene>
     </scenes>
 </document>

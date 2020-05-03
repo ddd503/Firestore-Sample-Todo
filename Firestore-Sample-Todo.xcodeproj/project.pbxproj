@@ -15,6 +15,10 @@
 		45E8535D245F0CF1009E35C1 /* TodoListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */; };
 		45E8535F245F0CFF009E35C1 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */; };
 		45E85361245F0F08009E35C1 /* FireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E85360245F0F08009E35C1 /* FireStoreRepository.swift */; };
+		45E85364245F35A7009E35C1 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E85363245F35A7009E35C1 /* CategoryHeaderView.swift */; };
+		45E85366245F35B0009E35C1 /* CategoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45E85365245F35B0009E35C1 /* CategoryHeaderView.xib */; };
+		45E8536A245F36CD009E35C1 /* CategoryHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E85368245F36CD009E35C1 /* CategoryHeaderCell.swift */; };
+		45E8536B245F36CD009E35C1 /* CategoryHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45E85369245F36CD009E35C1 /* CategoryHeaderCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,10 @@
 		45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodoListViewController.storyboard; sourceTree = "<group>"; };
 		45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		45E85360245F0F08009E35C1 /* FireStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreRepository.swift; sourceTree = "<group>"; };
+		45E85363245F35A7009E35C1 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
+		45E85365245F35B0009E35C1 /* CategoryHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryHeaderView.xib; sourceTree = "<group>"; };
+		45E85368245F36CD009E35C1 /* CategoryHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderCell.swift; sourceTree = "<group>"; };
+		45E85369245F36CD009E35C1 /* CategoryHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryHeaderCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +120,7 @@
 		45E85359245F0CBA009E35C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				45E85362245F34C7009E35C1 /* CustomView */,
 				45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */,
 				45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */,
 			);
@@ -124,6 +133,25 @@
 				45E85360245F0F08009E35C1 /* FireStoreRepository.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		45E85362245F34C7009E35C1 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				45E85367245F36A4009E35C1 /* CategoryHeader */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		45E85367245F36A4009E35C1 /* CategoryHeader */ = {
+			isa = PBXGroup;
+			children = (
+				45E85363245F35A7009E35C1 /* CategoryHeaderView.swift */,
+				45E85365245F35B0009E35C1 /* CategoryHeaderView.xib */,
+				45E85368245F36CD009E35C1 /* CategoryHeaderCell.swift */,
+				45E85369245F36CD009E35C1 /* CategoryHeaderCell.xib */,
+			);
+			path = CategoryHeader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +236,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4539DAB624335BDD00BE0B52 /* LaunchScreen.storyboard in Resources */,
+				45E85366245F35B0009E35C1 /* CategoryHeaderView.xib in Resources */,
+				45E8536B245F36CD009E35C1 /* CategoryHeaderCell.xib in Resources */,
 				4539DAB324335BDD00BE0B52 /* Assets.xcassets in Resources */,
 				45E8535D245F0CF1009E35C1 /* TodoListViewController.storyboard in Resources */,
 			);
@@ -227,7 +257,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45E8536A245F36CD009E35C1 /* CategoryHeaderCell.swift in Sources */,
 				45E8535F245F0CFF009E35C1 /* TodoListViewController.swift in Sources */,
+				45E85364245F35A7009E35C1 /* CategoryHeaderView.swift in Sources */,
 				4539DAAA24335BDC00BE0B52 /* AppDelegate.swift in Sources */,
 				4539DAAC24335BDC00BE0B52 /* SceneDelegate.swift in Sources */,
 				45E85361245F0F08009E35C1 /* FireStoreRepository.swift in Sources */,

@@ -10,9 +10,20 @@ import UIKit
 
 final class TodoListViewController: UIViewController {
 
+    @IBOutlet weak private var categoryHeaderBaseView: UIView!
+    @IBOutlet weak private var todoListView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let categoryHeaderView = CategoryHeaderView.make(frame: CGRect(origin: .zero,
+                                                                       size: categoryHeaderBaseView.frame.size),
+                                                         categoryList: ["みかん",
+                                                                        "りんご",
+                                                                        "バナナ",
+                                                                        "キウイ",
+                                                                        "パイナップル",
+                                                                        "ぶどう"])
+        categoryHeaderBaseView.addSubview(categoryHeaderView)
     }
-
+    
 }
