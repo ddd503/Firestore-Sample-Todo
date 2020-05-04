@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CategoryHeaderViewDelegate: AnyObject {
+    func didSelectCategory(_ category: Category)
+}
+
 final class CategoryHeaderView: UIView {
 
     @IBOutlet weak private var categoryListView: UICollectionView! {
@@ -31,9 +35,11 @@ final class CategoryHeaderView: UIView {
         return view
     }()
 
-    private var categoryList = [String]()
+    private var categoryList = [Category]()
 
-    static func make(frame: CGRect, categoryList: [String]) -> CategoryHeaderView {
+    weak var delegate: CategoryHeaderViewDelegate?
+
+    static func make(frame: CGRect, categoryList: [Category]) -> CategoryHeaderView {
         let view = UINib(nibName: "CategoryHeaderView", bundle: nil)
             .instantiate(withOwner: nil, options: nil).first as! CategoryHeaderView
         view.frame = frame
@@ -62,7 +68,7 @@ extension CategoryHeaderView: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryHeaderCell.identifier, for: indexPath) as! CategoryHeaderCell
-        cell.setInfo(categoryName: categoryList[indexPath.row])
+        cell.setInfo(categoryName: categoryList[indexPath.row].title)
         return cell
     }
 }
@@ -71,6 +77,8 @@ extension CategoryHeaderView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
 
+        delegate?.didSelectCategory(categoryList[indexPath.item])
+        
         let cell = categoryListView.dequeueReusableCell(withReuseIdentifier: CategoryHeaderCell.identifier, for: indexPath) as! CategoryHeaderCell
         UIView.animate(withDuration: 0.2) { [unowned self] in
             self.bottomLineView.frame.origin.x = cell.frame.origin.x

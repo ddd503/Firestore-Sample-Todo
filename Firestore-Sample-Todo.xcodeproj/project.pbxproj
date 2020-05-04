@@ -12,6 +12,7 @@
 		4539DAB324335BDD00BE0B52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4539DAB224335BDD00BE0B52 /* Assets.xcassets */; };
 		4539DAB624335BDD00BE0B52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4539DAB424335BDD00BE0B52 /* LaunchScreen.storyboard */; };
 		4539DAC124335BDE00BE0B52 /* Firestore_Sample_TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DAC024335BDE00BE0B52 /* Firestore_Sample_TodoTests.swift */; };
+		45947F9B246020750089C793 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45947F9A246020750089C793 /* Todo.swift */; };
 		45E8535D245F0CF1009E35C1 /* TodoListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */; };
 		45E8535F245F0CFF009E35C1 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */; };
 		45E85361245F0F08009E35C1 /* FireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E85360245F0F08009E35C1 /* FireStoreRepository.swift */; };
@@ -41,6 +42,7 @@
 		4539DABC24335BDE00BE0B52 /* Firestore-Sample-TodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Firestore-Sample-TodoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4539DAC024335BDE00BE0B52 /* Firestore_Sample_TodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firestore_Sample_TodoTests.swift; sourceTree = "<group>"; };
 		4539DAC224335BDE00BE0B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45947F9A246020750089C793 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodoListViewController.storyboard; sourceTree = "<group>"; };
 		45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		45E85360245F0F08009E35C1 /* FireStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreRepository.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				45E85360245F0F08009E35C1 /* FireStoreRepository.swift */,
+				45947F9A246020750089C793 /* Todo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45947F9B246020750089C793 /* Todo.swift in Sources */,
 				45E8536A245F36CD009E35C1 /* CategoryHeaderCell.swift in Sources */,
 				45E8535F245F0CFF009E35C1 /* TodoListViewController.swift in Sources */,
 				45E85364245F35A7009E35C1 /* CategoryHeaderView.swift in Sources */,
