@@ -25,7 +25,7 @@ final class CategoryHeaderView: UIView {
         }
     }
 
-    private lazy var bottomLineView: UIView = {
+    private var bottomLineView: UIView = {
         let view = UIView()
         view.backgroundColor = .red
         return view
@@ -41,12 +41,16 @@ final class CategoryHeaderView: UIView {
         return view
     }
 
-    func viewDidLayoutSubviews() {
+    // Viewのレイアウト完了後のタイミング（サイズが確定している想定）
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        // 初期表示時は(0,0)のセルに下線引く
         let cell = categoryListView.dequeueReusableCell(withReuseIdentifier: CategoryHeaderCell.identifier, for: IndexPath(item: 0, section: 0)) as! CategoryHeaderCell
-        //        bottomLineView.frame.origin.x = cell.frame.origin.x
-        let viewHeight = CGFloat(5)
-        bottomLineView.frame = CGRect(x: 0, y: categoryListView.frame.height - viewHeight,
-                                      width: cell.frame.width, height: viewHeight)
+        let bottomLineViewHeight = CGFloat(5)
+        bottomLineView.frame = CGRect(x: 0,
+                                      y: categoryListView.frame.height - bottomLineViewHeight,
+                                      width: cell.frame.width,
+                                      height: bottomLineViewHeight)
     }
 
 }
@@ -66,5 +70,11 @@ extension CategoryHeaderView: UICollectionViewDataSource {
 extension CategoryHeaderView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+
+        let cell = categoryListView.dequeueReusableCell(withReuseIdentifier: CategoryHeaderCell.identifier, for: indexPath) as! CategoryHeaderCell
+        UIView.animate(withDuration: 0.2) { [unowned self] in
+            self.bottomLineView.frame.origin.x = cell.frame.origin.x
+            self.bottomLineView.frame.size.width = cell.frame.width
+        }
     }
 }

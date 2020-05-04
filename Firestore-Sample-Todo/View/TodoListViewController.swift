@@ -17,18 +17,13 @@ final class TodoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryHeaderView = CategoryHeaderView.make(frame: CGRect(origin: .zero,
-                                                                       size: categoryHeaderBaseView.frame.size),
-                                                         categoryList: ["みかん",
-                                                                        "りんご",
-                                                                        "バナナ",
-                                                                        "キウイ",
-                                                                        "パイナップル",
-                                                                        "ぶどう"])
+                                                                   size: categoryHeaderBaseView.frame.size),
+                                                     categoryList: ["オレンジ",
+                                                                    "りんご",
+                                                                    "バナナ",
+                                                                    "キウイ",
+                                                                    "パイナップル",
+                                                                    "ぶどう"])
         categoryHeaderBaseView.addSubview(categoryHeaderView)
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        categoryHeaderView.viewDidLayoutSubviews()
     }
 }
