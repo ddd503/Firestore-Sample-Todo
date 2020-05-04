@@ -52,11 +52,17 @@ final class CategoryHeaderView: UIView {
         super.draw(rect)
         // 初期表示時は(0,0)のセルに下線引く
         let cell = categoryListView.dequeueReusableCell(withReuseIdentifier: CategoryHeaderCell.identifier, for: IndexPath(item: 0, section: 0)) as! CategoryHeaderCell
-        let bottomLineViewHeight = CGFloat(5)
+        let bottomLineViewHeight = CGFloat(2)
         bottomLineView.frame = CGRect(x: 0,
                                       y: categoryListView.frame.height - bottomLineViewHeight,
                                       width: cell.frame.width,
                                       height: bottomLineViewHeight)
+    }
+
+    func moveCategory(categoryId: Int) {
+        // カテゴリ(id)は昇順で並んでいることを想定
+        let indexPath = IndexPath(item: categoryId, section: 0)
+        collectionView(categoryListView, didSelectItemAt: indexPath)
     }
 
 }

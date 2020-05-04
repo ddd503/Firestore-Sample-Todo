@@ -22,37 +22,28 @@
                                     <constraint firstAttribute="height" constant="60" id="5ye-Uh-Abq"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JQt-ld-tee">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQA-On-6ge">
                                 <rect key="frame" x="0.0" y="148" width="414" height="748"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="I24-Y2-kqA">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I24-Y2-kqA" id="5MB-nd-npE">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                <connections>
+                                    <segue destination="e1a-1W-nN1" kind="embed" identifier="EmbedPageVC" id="XDg-ax-rsQ"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="JQt-ld-tee" firstAttribute="leading" secondItem="Gix-Y5-EOd" secondAttribute="leading" id="7Su-q6-SMg"/>
+                            <constraint firstItem="Gix-Y5-EOd" firstAttribute="trailing" secondItem="ZQA-On-6ge" secondAttribute="trailing" id="9p4-eu-fVj"/>
                             <constraint firstItem="cBq-Ej-ZDk" firstAttribute="width" secondItem="ygL-gr-CI7" secondAttribute="width" id="FnL-Q2-4bx"/>
                             <constraint firstItem="cBq-Ej-ZDk" firstAttribute="top" secondItem="Gix-Y5-EOd" secondAttribute="top" id="G6O-mY-tS3"/>
-                            <constraint firstItem="Gix-Y5-EOd" firstAttribute="trailing" secondItem="JQt-ld-tee" secondAttribute="trailing" id="MW0-jV-UDO"/>
-                            <constraint firstAttribute="bottom" secondItem="JQt-ld-tee" secondAttribute="bottom" id="UpD-qp-4Z9"/>
-                            <constraint firstItem="JQt-ld-tee" firstAttribute="top" secondItem="cBq-Ej-ZDk" secondAttribute="bottom" id="luE-Yl-2a4"/>
+                            <constraint firstAttribute="bottom" secondItem="ZQA-On-6ge" secondAttribute="bottom" id="bFi-RH-2H4"/>
                             <constraint firstItem="cBq-Ej-ZDk" firstAttribute="centerX" secondItem="ygL-gr-CI7" secondAttribute="centerX" id="yoY-F6-wVP"/>
+                            <constraint firstItem="ZQA-On-6ge" firstAttribute="leading" secondItem="Gix-Y5-EOd" secondAttribute="leading" id="zdb-mM-RJD"/>
+                            <constraint firstItem="ZQA-On-6ge" firstAttribute="top" secondItem="cBq-Ej-ZDk" secondAttribute="bottom" id="zrf-fA-qG5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gix-Y5-EOd"/>
                     </view>
                     <navigationItem key="navigationItem" title="Todo List" id="Jes-bB-4wc"/>
                     <connections>
                         <outlet property="categoryHeaderBaseView" destination="cBq-Ej-ZDk" id="vNS-gr-c6E"/>
-                        <outlet property="todoListView" destination="JQt-ld-tee" id="g5M-Q4-Aze"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SQf-or-kx8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -76,6 +67,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Vr-KI-OdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="256.52173913043481" y="148.66071428571428"/>
+        </scene>
+        <!--Todo List Paging View Controller-->
+        <scene sceneID="Gpi-ab-m7F">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="e1a-1W-nN1" customClass="TodoListPagingViewController" customModule="Firestore_Sample_Todo" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zId-xI-P0z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2001" y="184"/>
         </scene>
     </scenes>
 </document>

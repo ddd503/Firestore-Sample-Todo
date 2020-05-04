@@ -13,6 +13,12 @@
 		4539DAB624335BDD00BE0B52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4539DAB424335BDD00BE0B52 /* LaunchScreen.storyboard */; };
 		4539DAC124335BDE00BE0B52 /* Firestore_Sample_TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DAC024335BDE00BE0B52 /* Firestore_Sample_TodoTests.swift */; };
 		45947F9B246020750089C793 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45947F9A246020750089C793 /* Todo.swift */; };
+		45947F9E24603C7E0089C793 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45947F9C24603C7E0089C793 /* ListViewController.swift */; };
+		45947F9F24603C7E0089C793 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45947F9D24603C7E0089C793 /* ListViewController.xib */; };
+		45947FA224603E0E0089C793 /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45947FA024603E0E0089C793 /* ListViewCell.swift */; };
+		45947FA324603E0E0089C793 /* ListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45947FA124603E0E0089C793 /* ListViewCell.xib */; };
+		45947FA524603FC50089C793 /* TodoListPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45947FA424603FC50089C793 /* TodoListPagingViewController.swift */; };
+		45947FA7246059690089C793 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45947FA6246059690089C793 /* Array+.swift */; };
 		45E8535D245F0CF1009E35C1 /* TodoListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */; };
 		45E8535F245F0CFF009E35C1 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */; };
 		45E85361245F0F08009E35C1 /* FireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E85360245F0F08009E35C1 /* FireStoreRepository.swift */; };
@@ -43,6 +49,12 @@
 		4539DAC024335BDE00BE0B52 /* Firestore_Sample_TodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firestore_Sample_TodoTests.swift; sourceTree = "<group>"; };
 		4539DAC224335BDE00BE0B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45947F9A246020750089C793 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		45947F9C24603C7E0089C793 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		45947F9D24603C7E0089C793 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		45947FA024603E0E0089C793 /* ListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
+		45947FA124603E0E0089C793 /* ListViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewCell.xib; sourceTree = "<group>"; };
+		45947FA424603FC50089C793 /* TodoListPagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListPagingViewController.swift; sourceTree = "<group>"; };
+		45947FA6246059690089C793 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodoListViewController.storyboard; sourceTree = "<group>"; };
 		45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		45E85360245F0F08009E35C1 /* FireStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreRepository.swift; sourceTree = "<group>"; };
@@ -99,6 +111,7 @@
 				4539DAB224335BDD00BE0B52 /* Assets.xcassets */,
 				4539DAB424335BDD00BE0B52 /* LaunchScreen.storyboard */,
 				4539DAB724335BDD00BE0B52 /* Info.plist */,
+				45947FA6246059690089C793 /* Array+.swift */,
 			);
 			path = "Firestore-Sample-Todo";
 			sourceTree = "<group>";
@@ -112,6 +125,27 @@
 			path = "Firestore-Sample-TodoTests";
 			sourceTree = "<group>";
 		};
+		45947FA824605EDE0089C793 /* TodoListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */,
+				45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */,
+				45947FA424603FC50089C793 /* TodoListPagingViewController.swift */,
+			);
+			path = TodoListViewController;
+			sourceTree = "<group>";
+		};
+		45947FA924605EEA0089C793 /* ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				45947F9C24603C7E0089C793 /* ListViewController.swift */,
+				45947F9D24603C7E0089C793 /* ListViewController.xib */,
+				45947FA024603E0E0089C793 /* ListViewCell.swift */,
+				45947FA124603E0E0089C793 /* ListViewCell.xib */,
+			);
+			path = ListViewController;
+			sourceTree = "<group>";
+		};
 		45E85358245F0CB8009E35C1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,9 +156,9 @@
 		45E85359245F0CBA009E35C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				45947FA824605EDE0089C793 /* TodoListViewController */,
+				45947FA924605EEA0089C793 /* ListViewController */,
 				45E85362245F34C7009E35C1 /* CustomView */,
-				45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */,
-				45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -239,7 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4539DAB624335BDD00BE0B52 /* LaunchScreen.storyboard in Resources */,
+				45947FA324603E0E0089C793 /* ListViewCell.xib in Resources */,
 				45E85366245F35B0009E35C1 /* CategoryHeaderView.xib in Resources */,
+				45947F9F24603C7E0089C793 /* ListViewController.xib in Resources */,
 				45E8536B245F36CD009E35C1 /* CategoryHeaderCell.xib in Resources */,
 				4539DAB324335BDD00BE0B52 /* Assets.xcassets in Resources */,
 				45E8535D245F0CF1009E35C1 /* TodoListViewController.storyboard in Resources */,
@@ -261,11 +297,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				45947F9B246020750089C793 /* Todo.swift in Sources */,
+				45947FA7246059690089C793 /* Array+.swift in Sources */,
 				45E8536A245F36CD009E35C1 /* CategoryHeaderCell.swift in Sources */,
+				45947FA524603FC50089C793 /* TodoListPagingViewController.swift in Sources */,
 				45E8535F245F0CFF009E35C1 /* TodoListViewController.swift in Sources */,
 				45E85364245F35A7009E35C1 /* CategoryHeaderView.swift in Sources */,
 				4539DAAA24335BDC00BE0B52 /* AppDelegate.swift in Sources */,
 				4539DAAC24335BDC00BE0B52 /* SceneDelegate.swift in Sources */,
+				45947F9E24603C7E0089C793 /* ListViewController.swift in Sources */,
+				45947FA224603E0E0089C793 /* ListViewCell.swift in Sources */,
 				45E85361245F0F08009E35C1 /* FireStoreRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

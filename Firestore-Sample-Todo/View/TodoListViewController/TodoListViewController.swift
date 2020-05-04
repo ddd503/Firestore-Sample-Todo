@@ -11,12 +11,8 @@ import UIKit
 final class TodoListViewController: UIViewController {
 
     @IBOutlet weak private var categoryHeaderBaseView: UIView!
-    @IBOutlet weak private var todoListView: UITableView! {
-        didSet {
-            todoListView.tableFooterView = UIView()
-            todoListView.dataSource = self
-        }
-    }
+    private var todoListPagingVC: TodoListPagingViewController!
+    private var categoryHeaderView: CategoryHeaderView!
 
     let todoList: [Todo] = {
         // 仮でTodoを用意
@@ -38,37 +34,48 @@ final class TodoListViewController: UIViewController {
         return [todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9, todo10, todo11, todo12, todo13, todo14, todo15]
     }()
 
-    var displayTodo = [Todo]()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         let categoryList = todoList.reduce([Category](), { $0.map { $0.id }.contains($1.category.id) ? $0 : $0 + [$1.category]}).sorted { $0.id < $1.id }
-        let categoryHeaderView = CategoryHeaderView.make(frame: CGRect(origin: .zero,
+        categoryHeaderView = CategoryHeaderView.make(frame: CGRect(origin: .zero,
                                                                        size: categoryHeaderBaseView.frame.size),
                                                          categoryList: categoryList)
         categoryHeaderBaseView.addSubview(categoryHeaderView)
         categoryHeaderView.delegate = self
-        displayTodo = todoList.filter { $0.category.id == 0 }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let todoListPagingVC = segue.destination as? TodoListPagingViewController,
+            segue.identifier == "EmbedPageVC" else {
+            return
+        }
+        let categoryList = todoList
+            .map { $0.category } // カテゴリだけ取り出し
+            .reduce([Category](), { $0.map { $0.id }.contains($1.id) ? $0 : $0 + [$1]}) // カテゴリの重複削除
+            .sorted { $0.id < $1.id } // idで昇順でソート
+        
+        let listViewControllers = categoryList.map { (category) -> ListViewController in
+            let listVC = ListViewController(todoList: todoList.filter { $0.category.id == category.id })
+            listVC.view.tag = category.id
+            return listVC
+        }
+
+        self.todoListPagingVC = todoListPagingVC
+        self.todoListPagingVC.setup(listViewControllers: listViewControllers)
+        self.todoListPagingVC.todoListPagingDelegate = self
+    }
+}
+
+extension TodoListViewController: TodoListPagingViewControllerDelegate {
+    func movePage(listNumber: Int) {
+        categoryHeaderView.moveCategory(categoryId: listNumber)
     }
 }
 
 extension TodoListViewController: CategoryHeaderViewDelegate {
     func didSelectCategory(_ category: Category) {
-        displayTodo = todoList.filter { $0.category.id == category.id }
         DispatchQueue.main.async { [unowned self] in
-            self.todoListView.reloadData()
+            self.todoListPagingVC.setPage(category.id)
         }
-    }
-}
-
-extension TodoListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        displayTodo.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = displayTodo[indexPath.row].title
-        return cell
     }
 }
