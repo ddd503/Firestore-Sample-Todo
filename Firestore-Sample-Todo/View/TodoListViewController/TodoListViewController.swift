@@ -64,6 +64,7 @@ final class TodoListViewController: UIViewController {
         }
 
         self.todoListPagingVC = todoListPagingVC
+
         let result = categoryList.map { $0.id }.min { $0 < $1 }
         if let firstCategoryId = result {
             self.todoListPagingVC.setup(listVCDicAtCategoryId: listVCDicAtCategoryId, firstCategoryId: firstCategoryId)

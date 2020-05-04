@@ -15,7 +15,6 @@ protocol TodoListPagingViewControllerDelegate: AnyObject {
 class TodoListPagingViewController: UIPageViewController {
 
     weak var todoListPagingDelegate: TodoListPagingViewControllerDelegate?
-//    private var pageListViewControllers = [ListViewController]()
     private var listVCDicAtCategoryId: [Int : ListViewController] = [:]
 
     override func viewDidLoad() {
