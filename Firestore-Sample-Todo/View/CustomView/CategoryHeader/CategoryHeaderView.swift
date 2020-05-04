@@ -20,8 +20,16 @@ final class CategoryHeaderView: UIView {
             layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             layout.scrollDirection = .horizontal
             categoryListView.collectionViewLayout = layout
+            categoryListView.addSubview(bottomLineView)
+
         }
     }
+
+    private lazy var bottomLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        return view
+    }()
 
     private var categoryList = [String]()
 
@@ -32,6 +40,15 @@ final class CategoryHeaderView: UIView {
         view.categoryList = categoryList
         return view
     }
+
+    func viewDidLayoutSubviews() {
+        let cell = categoryListView.dequeueReusableCell(withReuseIdentifier: CategoryHeaderCell.identifier, for: IndexPath(item: 0, section: 0)) as! CategoryHeaderCell
+        //        bottomLineView.frame.origin.x = cell.frame.origin.x
+        let viewHeight = CGFloat(5)
+        bottomLineView.frame = CGRect(x: 0, y: categoryListView.frame.height - viewHeight,
+                                      width: cell.frame.width, height: viewHeight)
+    }
+
 }
 
 extension CategoryHeaderView: UICollectionViewDataSource {
@@ -48,6 +65,6 @@ extension CategoryHeaderView: UICollectionViewDataSource {
 
 extension CategoryHeaderView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(categoryList[indexPath.row])
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
