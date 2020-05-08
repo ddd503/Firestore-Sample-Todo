@@ -9,54 +9,54 @@
 import UIKit
 
 protocol TodoListPagingViewControllerDelegate: AnyObject {
-    func movePage(listNumber: Int)
+    func didPagingForSwipe(pageId: Int)
 }
 
 class TodoListPagingViewController: UIPageViewController {
 
-    weak var todoListPagingDelegate: TodoListPagingViewControllerDelegate?
-    private var listVCDicAtCategoryId: [Int : ListViewController] = [:]
+    private var vcArray = [UIViewController]()
+    private var pageIndex = 0
+    weak var todoListPagingVCDelegate: TodoListPagingViewControllerDelegate?
 
-    func setup(listVCDicAtCategoryId: [Int : ListViewController], firstCategoryId: Int) {
-        dataSource = self
-        delegate = self
-        self.listVCDicAtCategoryId = listVCDicAtCategoryId
-        guard let vc = listVCDicAtCategoryId[firstCategoryId] else { return }
-        setViewControllers([vc], direction: .forward, animated: true, completion: nil)
+    func setup(vcArray: [UIViewController]) {
+        self.dataSource = self
+        self.delegate = self
+        self.vcArray = vcArray
+        setViewControllers([vcArray[pageIndex]], direction: .forward, animated: true, completion: nil)
     }
 
-    func setPage(at categoryId: Int) {
-        guard let nextVC = listVCDicAtCategoryId[categoryId],
-            let currentVC = viewControllers?.first else { return }
-
-        setViewControllers([nextVC],
-                           direction: nextVC.view.tag > currentVC.view.tag ? .forward : .reverse,
-                           animated: true, completion: nil)
+    func setPage(at menuId: Int) {
+        guard let nextPageIndex = pageIndex(at: menuId) else { return }
+        let direction: NavigationDirection = nextPageIndex > pageIndex ? .forward : .reverse
+        pageIndex = nextPageIndex
+        setViewControllers([vcArray[nextPageIndex]], direction: direction, animated: true, completion: nil)
     }
 
+    private func pageIndex(at menuId: Int) -> Int? {
+        vcArray.firstIndex(where: { $0.view.tag == menuId })
+    }
 }
 
 extension TodoListPagingViewController: UIPageViewControllerDataSource {
-    // 右スワイプ
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let result = listVCDicAtCategoryId
-            .filter { viewController.view.tag > $0.key } // 表示中のVCよりidが小さい(昇順なので右側)ものを絞る
-            .max { $0.key < $1.key } // 中で一番idが大きい（表示中のVCに近いページを持つdic）ものを確定
-        return result?.value
+        guard let nextVC = vcArray[safe: pageIndex - 1] else { return nil }
+        return nextVC
     }
-    // 左スワイプ
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let result = listVCDicAtCategoryId
-            .filter { $0.key > viewController.view.tag } // 表示中のVCよりidが大きい(昇順なので左側)ものを絞る
-            .min { $0.key < $1.key } // 中で一番idが小さい（表示中のVCに近いページを持つdic）ものを確定
-        return result?.value
+        guard let nextVC = vcArray[safe: pageIndex + 1] else { return nil }
+        return nextVC
     }
 }
 
 extension TodoListPagingViewController: UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if finished, completed, let currentVC = pageViewController.viewControllers?.first {
-            todoListPagingDelegate?.movePage(listNumber: currentVC.view.tag)
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool,
+                            previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        // setViewControllersを呼んでの遷移の場合は呼ばれない、スワイプのみ
+        if finished, completed, let currentVC = pageViewController.viewControllers?.first,
+            let currentPageIndex = pageIndex(at: currentVC.view.tag) {
+            pageIndex = currentPageIndex
+            todoListPagingVCDelegate?.didPagingForSwipe(pageId: currentVC.view.tag)
         }
     }
 }

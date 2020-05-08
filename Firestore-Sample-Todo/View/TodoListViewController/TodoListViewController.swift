@@ -34,12 +34,14 @@ final class TodoListViewController: UIViewController {
         return [todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9, todo10, todo11, todo12, todo13, todo14, todo15]
     }()
 
-    lazy var categoryList: [Category] = {
-        return todoList
-            .map { $0.category } // カテゴリだけ取り出し
-            .reduce([Category](), { $0.map { $0.id }.contains($1.id) ? $0 : $0 + [$1]}) // カテゴリの重複削除
-            .sorted { $0.id < $1.id } // idで昇順でソート
-    }()
+    var categoryList = [Category(id: 0, title: "やること"),
+                        Category(id: 1, title: "勉強"),
+                        Category(id: 2, title: "趣味"),
+                        Category(id: 3, title: "予約"),
+                        Category(id: 4, title: "仕事"),
+                        Category(id: 5, title: "約束"),
+                        Category(id: 6, title: "引越しの準備"),
+                        Category(id: 7, title: "ゲーム")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,30 +53,21 @@ final class TodoListViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let todoListPagingVC = segue.destination as? TodoListPagingViewController,
-            segue.identifier == "EmbedPageVC" else {
-            return
-        }
-        
-        var listVCDicAtCategoryId = [Int : ListViewController]()
-        categoryList.forEach { (category) in
-            let listVC = ListViewController(todoList: todoList.filter { $0.category.id == category.id })
-            listVC.view.tag = category.id
-            listVCDicAtCategoryId[category.id] = listVC
-        }
+            segue.identifier == "EmbedPageVC" else { return }
 
         self.todoListPagingVC = todoListPagingVC
-
-        let result = categoryList.map { $0.id }.min { $0 < $1 }
-        if let firstCategoryId = result {
-            self.todoListPagingVC.setup(listVCDicAtCategoryId: listVCDicAtCategoryId, firstCategoryId: firstCategoryId)
-        }
-        self.todoListPagingVC.todoListPagingDelegate = self
+        self.todoListPagingVC.todoListPagingVCDelegate = self
+        self.todoListPagingVC.setup(vcArray: categoryList.map({ (category) -> ListViewController in
+            let listVC = ListViewController(todoList: todoList.filter { $0.category.id == category.id })
+            listVC.view.tag = category.id
+            return listVC
+        }))
     }
 }
 
 extension TodoListViewController: TodoListPagingViewControllerDelegate {
-    func movePage(listNumber: Int) {
-        categoryHeaderView.selectCategory(at: listNumber)
+    func didPagingForSwipe(pageId: Int) {
+        categoryHeaderView.selectCategory(at: pageId)
     }
 }
 
