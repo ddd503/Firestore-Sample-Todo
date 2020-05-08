@@ -43,11 +43,10 @@ final class TodoListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        categoryHeaderView = CategoryHeaderView.make(frame: CGRect(origin: .zero,
-                                                                   size: categoryHeaderBaseView.frame.size),
-                                                     categoryList: categoryList)
-        categoryHeaderBaseView.addSubview(categoryHeaderView)
+        categoryHeaderView = CategoryHeaderView.make(frame: CGRect(origin: .zero, size: categoryHeaderBaseView.frame.size),
+                                                     categoryList: categoryList, selectCategoryTitleColor: .red)
         categoryHeaderView.delegate = self
+        categoryHeaderBaseView.addSubview(categoryHeaderView)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -75,12 +74,12 @@ final class TodoListViewController: UIViewController {
 
 extension TodoListViewController: TodoListPagingViewControllerDelegate {
     func movePage(listNumber: Int) {
-        categoryHeaderView.moveCategory(categoryId: listNumber)
+        categoryHeaderView.selectCategory(at: listNumber)
     }
 }
 
 extension TodoListViewController: CategoryHeaderViewDelegate {
-    func didSelectCategory(_ category: Category) {
+    func didTapCategory(_ category: Category) {
         DispatchQueue.main.async { [unowned self] in
             self.todoListPagingVC.setPage(at: category.id)
         }

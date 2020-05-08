@@ -18,6 +18,8 @@
 		45947FA224603E0E0089C793 /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45947FA024603E0E0089C793 /* ListViewCell.swift */; };
 		45947FA324603E0E0089C793 /* ListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45947FA124603E0E0089C793 /* ListViewCell.xib */; };
 		45947FA524603FC50089C793 /* TodoListPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45947FA424603FC50089C793 /* TodoListPagingViewController.swift */; };
+		459CFF5B246299670022AC6C /* UIView+XIB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459CFF5A246299670022AC6C /* UIView+XIB.swift */; };
+		459CFF5D246299770022AC6C /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459CFF5C246299770022AC6C /* Array+.swift */; };
 		45E8535D245F0CF1009E35C1 /* TodoListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */; };
 		45E8535F245F0CFF009E35C1 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */; };
 		45E85361245F0F08009E35C1 /* FireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E85360245F0F08009E35C1 /* FireStoreRepository.swift */; };
@@ -53,6 +55,8 @@
 		45947FA024603E0E0089C793 /* ListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
 		45947FA124603E0E0089C793 /* ListViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewCell.xib; sourceTree = "<group>"; };
 		45947FA424603FC50089C793 /* TodoListPagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListPagingViewController.swift; sourceTree = "<group>"; };
+		459CFF5A246299670022AC6C /* UIView+XIB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+XIB.swift"; sourceTree = "<group>"; };
+		459CFF5C246299770022AC6C /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		45E8535C245F0CF1009E35C1 /* TodoListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodoListViewController.storyboard; sourceTree = "<group>"; };
 		45E8535E245F0CFF009E35C1 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		45E85360245F0F08009E35C1 /* FireStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreRepository.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 		4539DAA824335BDC00BE0B52 /* Firestore-Sample-Todo */ = {
 			isa = PBXGroup;
 			children = (
+				459CFF59246299520022AC6C /* Extension */,
 				45E8535A245F0CBD009E35C1 /* Model */,
 				45E85359245F0CBA009E35C1 /* View */,
 				45E85358245F0CB8009E35C1 /* ViewModel */,
@@ -141,6 +146,15 @@
 				45947FA124603E0E0089C793 /* ListViewCell.xib */,
 			);
 			path = ListViewController;
+			sourceTree = "<group>";
+		};
+		459CFF59246299520022AC6C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				459CFF5A246299670022AC6C /* UIView+XIB.swift */,
+				459CFF5C246299770022AC6C /* Array+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		45E85358245F0CB8009E35C1 /* ViewModel */ = {
@@ -294,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45947F9B246020750089C793 /* Todo.swift in Sources */,
+				459CFF5D246299770022AC6C /* Array+.swift in Sources */,
 				45E8536A245F36CD009E35C1 /* CategoryHeaderCell.swift in Sources */,
 				45947FA524603FC50089C793 /* TodoListPagingViewController.swift in Sources */,
 				45E8535F245F0CFF009E35C1 /* TodoListViewController.swift in Sources */,
@@ -303,6 +318,7 @@
 				45947F9E24603C7E0089C793 /* ListViewController.swift in Sources */,
 				45947FA224603E0E0089C793 /* ListViewCell.swift in Sources */,
 				45E85361245F0F08009E35C1 /* FireStoreRepository.swift in Sources */,
+				459CFF5B246299670022AC6C /* UIView+XIB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

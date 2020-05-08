@@ -17,13 +17,9 @@ class TodoListPagingViewController: UIPageViewController {
     weak var todoListPagingDelegate: TodoListPagingViewControllerDelegate?
     private var listVCDicAtCategoryId: [Int : ListViewController] = [:]
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func setup(listVCDicAtCategoryId: [Int : ListViewController], firstCategoryId: Int) {
         dataSource = self
         delegate = self
-    }
-
-    func setup(listVCDicAtCategoryId: [Int : ListViewController], firstCategoryId: Int) {
         self.listVCDicAtCategoryId = listVCDicAtCategoryId
         guard let vc = listVCDicAtCategoryId[firstCategoryId] else { return }
         setViewControllers([vc], direction: .forward, animated: true, completion: nil)
@@ -41,18 +37,18 @@ class TodoListPagingViewController: UIPageViewController {
 }
 
 extension TodoListPagingViewController: UIPageViewControllerDataSource {
-    // 左スワイプ
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let result = listVCDicAtCategoryId
-            .filter { $0.key > viewController.view.tag } // 表示中のVCよりidが大きい(昇順なので左側)ものを絞る
-            .min { $0.key < $1.key } // 中で一番idが小さい（表示中のVCに近いページを持つdic）ものを確定
-        return result?.value
-    }
     // 右スワイプ
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let result = listVCDicAtCategoryId
             .filter { viewController.view.tag > $0.key } // 表示中のVCよりidが小さい(昇順なので右側)ものを絞る
             .max { $0.key < $1.key } // 中で一番idが大きい（表示中のVCに近いページを持つdic）ものを確定
+        return result?.value
+    }
+    // 左スワイプ
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        let result = listVCDicAtCategoryId
+            .filter { $0.key > viewController.view.tag } // 表示中のVCよりidが大きい(昇順なので左側)ものを絞る
+            .min { $0.key < $1.key } // 中で一番idが小さい（表示中のVCに近いページを持つdic）ものを確定
         return result?.value
     }
 }

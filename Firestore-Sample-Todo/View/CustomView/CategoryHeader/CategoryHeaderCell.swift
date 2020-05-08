@@ -12,15 +12,12 @@ final class CategoryHeaderCell: UICollectionViewCell {
 
     @IBOutlet weak private var categoryNameLabel: UILabel!
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-
-    static func nib() -> UINib {
-        return UINib(nibName: identifier, bundle: nil)
-    }
-
     func setInfo(categoryName: String) {
         categoryNameLabel.text = categoryName
+    }
+    /// タイトルカラーを変更する
+    /// - Parameter color: タイトルカラー
+    func setTitleColor(_ color: UIColor) {
+        categoryNameLabel.textColor = color
     }
 }
