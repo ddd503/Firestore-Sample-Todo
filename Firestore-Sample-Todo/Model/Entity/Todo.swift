@@ -13,5 +13,5 @@ struct Todo {
     let title: String
     let content: String
     let editDate: Date
-    let category: Category
+    let categoryId: String
 }

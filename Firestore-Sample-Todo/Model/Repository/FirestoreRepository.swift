@@ -9,19 +9,20 @@
 import Foundation
 import FirebaseFirestore
 
-protocol FireStoreRepository {
+protocol FirestoreRepository {
     func createCategory(title: String, editDate: Date, _ completion: @escaping (Result<Void, Error>) -> ())
     func readCategories(_ completion: @escaping (Result<[Category], Error>) -> ())
     func updateCategory(_ category: Category, _ completion: @escaping (Result<Void, Error>) -> ())
     func deleteCategory(by id: String, _ completion: @escaping (Result<Void, Error>) -> ())
-    func createTodo(title: String, content: String, editDate: Date, category: Category,
+    func createTodo(title: String, content: String, editDate: Date, categoryId: String,
                     _ completion: @escaping (Result<Void, Error>) -> ())
     func readTodoList(with categoryId: Int, _ completion: @escaping (Result<[Todo], Error>) -> ())
+    func readAllCategoryTodoList(_ completion: @escaping (Result<[Todo], Error>) -> ())
     func updateTodo(_ todo: Todo, _ completion: @escaping (Result<Void, Error>) -> ())
     func deleteTodo(by id: String, _ completion: @escaping (Result<Void, Error>) -> ())
 }
 
-struct FireStoreRepositoryImpl: FireStoreRepository {
+struct FirestoreRepositoryImpl: FirestoreRepository {
 
     private let db = Firestore.firestore()
 
@@ -43,10 +44,10 @@ struct FireStoreRepositoryImpl: FireStoreRepository {
             if let error = error {
                 completion(.failure(error))
             } else {
-                let categories = snapshot?.documentChanges.compactMap({ docChange -> Category? in
-                    guard let title = docChange.document.data()["title"] as? String,
-                        let editDate = (docChange.document.data()["editDate"] as? Timestamp)?.dateValue() else { return nil }
-                    return Category(id: docChange.document.documentID, title: title, editDate: editDate)
+                let categories = snapshot?.documents.compactMap({ doc -> Category? in
+                    guard let title = doc.data()["title"] as? String,
+                        let editDate = (doc.data()["editDate"] as? Timestamp)?.dateValue() else { return nil }
+                    return Category(id: doc.documentID, title: title, editDate: editDate)
                 })
                 completion(.success(categories ?? []))
             }
@@ -76,13 +77,13 @@ struct FireStoreRepositoryImpl: FireStoreRepository {
         }
     }
 
-    func createTodo(title: String, content: String, editDate: Date, category: Category,
+    func createTodo(title: String, content: String, editDate: Date, categoryId: String,
                     _ completion: @escaping (Result<Void, Error>) -> ()) {
         db.collection("todoList").addDocument(data: [
             "title": title,
             "content": content,
             "editDate": editDate,
-            "category": category
+            "categoryId": categoryId
         ]) { error in
             if let error = error {
                 completion(.failure(error))
@@ -102,12 +103,29 @@ struct FireStoreRepositoryImpl: FireStoreRepository {
         }
     }
 
+    func readAllCategoryTodoList(_ completion: @escaping (Result<[Todo], Error>) -> ()) {
+        db.collection("todoList").order(by: "editDate", descending: false).getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                let categories = snapshot?.documents.compactMap({ doc -> Todo? in
+                    guard let title = doc.data()["title"] as? String,
+                        let content = doc.data()["content"] as? String,
+                        let editDate = (doc.data()["editDate"] as? Timestamp)?.dateValue(),
+                        let categoryId = doc.data()["categoryId"] as? String else { return nil }
+                    return Todo(id: doc.documentID, title: title, content: content, editDate: editDate, categoryId: categoryId)
+                })
+                completion(.success(categories ?? []))
+            }
+        }
+    }
+
     func updateTodo(_ todo: Todo, _ completion: @escaping (Result<Void, Error>) -> ()) {
         db.collection("todoList").document(todo.id).setData( [
             "title": todo.title,
             "content": todo.content,
-            "category": todo.category,
-            "editDate": todo.editDate
+            "editDate": todo.editDate,
+            "categoryId": todo.categoryId
         ]) { error in
             if let error = error {
                 completion(.failure(error))
