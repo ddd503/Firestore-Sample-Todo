@@ -13,6 +13,8 @@
 		4539DAC124335BDE00BE0B52 /* Firestore_Sample_TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DAC024335BDE00BE0B52 /* Firestore_Sample_TodoTests.swift */; };
 		456C1AF224659360002F8495 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 456C1AF124659360002F8495 /* GoogleService-Info.plist */; };
 		458728C22466AF230034E621 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458728C12466AF230034E621 /* SceneDelegate.swift */; };
+		458728C52466FFB00034E621 /* CreateTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458728C42466FFB00034E621 /* CreateTodoView.swift */; };
+		458728C72466FFBB0034E621 /* CreateTodoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458728C62466FFBB0034E621 /* CreateTodoView.xib */; };
 		45947F9B246020750089C793 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45947F9A246020750089C793 /* Todo.swift */; };
 		45947F9E24603C7E0089C793 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45947F9C24603C7E0089C793 /* ListViewController.swift */; };
 		45947F9F24603C7E0089C793 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45947F9D24603C7E0089C793 /* ListViewController.xib */; };
@@ -55,6 +57,8 @@
 		4539DAC224335BDE00BE0B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		456C1AF124659360002F8495 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		458728C12466AF230034E621 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		458728C42466FFB00034E621 /* CreateTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTodoView.swift; sourceTree = "<group>"; };
+		458728C62466FFBB0034E621 /* CreateTodoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTodoView.xib; sourceTree = "<group>"; };
 		45947F9A246020750089C793 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		45947F9C24603C7E0089C793 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		45947F9D24603C7E0089C793 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
@@ -155,6 +159,15 @@
 			path = "Firestore-Sample-TodoTests";
 			sourceTree = "<group>";
 		};
+		458728C32466FF320034E621 /* InputTextAccessory */ = {
+			isa = PBXGroup;
+			children = (
+				458728C42466FFB00034E621 /* CreateTodoView.swift */,
+				458728C62466FFBB0034E621 /* CreateTodoView.xib */,
+			);
+			path = InputTextAccessory;
+			sourceTree = "<group>";
+		};
 		45947FA824605EDE0089C793 /* TodoListViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +244,7 @@
 		45E85362245F34C7009E35C1 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				458728C32466FF320034E621 /* InputTextAccessory */,
 				45E85367245F36A4009E35C1 /* CategoryHeader */,
 			);
 			path = CustomView;
@@ -343,6 +357,7 @@
 				4539DAB624335BDD00BE0B52 /* LaunchScreen.storyboard in Resources */,
 				456C1AF224659360002F8495 /* GoogleService-Info.plist in Resources */,
 				45947FA324603E0E0089C793 /* ListViewCell.xib in Resources */,
+				458728C72466FFBB0034E621 /* CreateTodoView.xib in Resources */,
 				45E85366245F35B0009E35C1 /* CategoryHeaderView.xib in Resources */,
 				45947F9F24603C7E0089C793 /* ListViewController.xib in Resources */,
 				45E8536B245F36CD009E35C1 /* CategoryHeaderCell.xib in Resources */,
@@ -430,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45947F9B246020750089C793 /* Todo.swift in Sources */,
+				458728C52466FFB00034E621 /* CreateTodoView.swift in Sources */,
 				459CFF5D246299770022AC6C /* Array+.swift in Sources */,
 				45E8536A245F36CD009E35C1 /* CategoryHeaderCell.swift in Sources */,
 				45947FA524603FC50089C793 /* TodoListPagingViewController.swift in Sources */,

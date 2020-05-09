@@ -32,17 +32,17 @@ final class CategoryHeaderView: UIView {
     ///   - frame: frame
     ///   - menus: リスト表示するメニューの配列
     ///   - selectMenuTitleColor: 選択中のメニュータイトルの色
-    static func make(frame: CGRect, categoryList: [Category], selectCategoryTitleColor: UIColor) -> CategoryHeaderView {
+    static func make(frame: CGRect, categories: [Category], selectCategoryTitleColor: UIColor) -> CategoryHeaderView {
         let view = UINib(nibName: "CategoryHeaderView", bundle: nil)
             .instantiate(withOwner: nil, options: nil).first as! CategoryHeaderView
         view.frame = frame
-        view.categoryList = categoryList
+        view.categories = categories
         view.selectCategoryTitleColor = selectCategoryTitleColor
         return view
     }
     
     private var bottomLineView = UIView()
-    private var categoryList = [Category]()
+    private var categories = [Category]()
     private var selectCategoryTitleColor = UIColor.black
     weak var delegate: CategoryHeaderViewDelegate?
     
@@ -71,7 +71,7 @@ final class CategoryHeaderView: UIView {
     }
     
     private func categoryIndex(at categoryId: String) -> IndexPath? {
-        let result = categoryList.firstIndex { $0.id == categoryId }
+        let result = categories.firstIndex { $0.id == categoryId }
         guard let index = result else { return nil }
         return IndexPath(row: index, section: 0)
     }
@@ -108,12 +108,12 @@ final class CategoryHeaderView: UIView {
 
 extension CategoryHeaderView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        categoryList.count
+        categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryHeaderCell.identifier, for: indexPath) as! CategoryHeaderCell
-        cell.setInfo(categoryName: categoryList[indexPath.row].title)
+        cell.setInfo(categoryName: categories[indexPath.row].title)
         let titleColor: UIColor = categoryListView.indexPathsForSelectedItems?.first == indexPath ? selectCategoryTitleColor : .black
         cell.setTitleColor(titleColor)
         return cell
@@ -123,7 +123,7 @@ extension CategoryHeaderView: UICollectionViewDataSource {
 extension CategoryHeaderView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectCategory(at: indexPath)
-        delegate?.didTapCategory(categoryList[indexPath.item])
+        delegate?.didTapCategory(categories[indexPath.item])
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
