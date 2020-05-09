@@ -13,7 +13,6 @@ final class TodoListViewController: UIViewController {
     @IBOutlet weak private var categoryHeaderBaseView: UIView!
     private var todoListPagingVC: TodoListPagingViewController!
     private var categoryHeaderView: CategoryHeaderView!
-//    var categories = [Category]()
 
     override func viewDidLoad() {
         super.viewDidLoad()

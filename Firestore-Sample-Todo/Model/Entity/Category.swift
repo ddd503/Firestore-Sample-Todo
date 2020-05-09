@@ -12,10 +12,4 @@ struct Category {
     let id: String
     let title: String
     let editDate: Date
-
-    init(id: String = "", title: String, editDate: Date = Date()) {
-        self.id = id
-        self.title = title
-        self.editDate = editDate
-    }
 }

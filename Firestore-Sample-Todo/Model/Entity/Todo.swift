@@ -14,12 +14,4 @@ struct Todo {
     let content: String
     let editDate: Date
     let category: Category
-
-    init(id: String = "", title: String, content: String = "", editDate: Date = Date(), category: Category) {
-        self.id = id
-        self.title = title
-        self.content = content
-        self.editDate = editDate
-        self.category = category
-    }
 }
