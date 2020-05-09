@@ -20,10 +20,12 @@ final class ListViewController: UIViewController {
 
     let categoryId: String
     private var todoList = [Todo]()
+    private let firestoreRepository: FirestoreRepository
 
-    init(categoryId: String, todoList: [Todo]) {
+    init(categoryId: String, todoList: [Todo], firestoreRepository: FirestoreRepository) {
         self.categoryId = categoryId
         self.todoList = todoList
+        self.firestoreRepository = firestoreRepository
         super.init(nibName: "ListViewController", bundle: .main)
     }
 
@@ -40,7 +42,14 @@ extension ListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as! ListViewCell
-        cell.setInfo(title: todoList[indexPath.row].title)
+        cell.setInfo(todo: todoList[indexPath.row])
+        cell.delegate = self
         return cell
+    }
+}
+
+extension ListViewController: ListViewCellDelegate {
+    func tappedCheckButton(with todo: Todo) {
+        firestoreRepository.updateTodoStatus(todo, nil)
     }
 }

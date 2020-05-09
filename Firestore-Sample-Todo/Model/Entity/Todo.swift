@@ -14,4 +14,5 @@ struct Todo {
     let content: String
     let editDate: Date
     let categoryId: String
+    var isDone: Bool
 }

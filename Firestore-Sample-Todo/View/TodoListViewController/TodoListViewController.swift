@@ -33,7 +33,8 @@ final class TodoListViewController: UIViewController {
                         case .success(let todoList):
                             self.todoListPagingVC.setup(listVCArray: categories.map({ (category) -> ListViewController in
                                 let listVC = ListViewController(categoryId: category.id,
-                                                                todoList: todoList.filter { $0.categoryId == category.id })
+                                                                todoList: todoList.filter { $0.categoryId == category.id },
+                                                                firestoreRepository: self.firestoreRepository)
                                 return listVC
                             }))
                         case .failure(let error):

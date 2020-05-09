@@ -14,11 +14,12 @@ protocol FirestoreRepository {
     func readCategories(_ completion: @escaping (Result<[Category], Error>) -> ())
     func updateCategory(_ category: Category, _ completion: @escaping (Result<Void, Error>) -> ())
     func deleteCategory(by id: String, _ completion: @escaping (Result<Void, Error>) -> ())
-    func createTodo(title: String, content: String, editDate: Date, categoryId: String,
+    func createTodo(title: String, content: String, editDate: Date, categoryId: String, isDone: Bool,
                     _ completion: @escaping (Result<Void, Error>) -> ())
     func readTodoList(with categoryId: Int, _ completion: @escaping (Result<[Todo], Error>) -> ())
     func readAllCategoryTodoList(_ completion: @escaping (Result<[Todo], Error>) -> ())
     func updateTodo(_ todo: Todo, _ completion: @escaping (Result<Void, Error>) -> ())
+    func updateTodoStatus(_ todo: Todo, _ completion: ((Result<Void, Error>) -> ())?)
     func deleteTodo(by id: String, _ completion: @escaping (Result<Void, Error>) -> ())
 }
 
@@ -77,7 +78,7 @@ struct FirestoreRepositoryImpl: FirestoreRepository {
         }
     }
 
-    func createTodo(title: String, content: String, editDate: Date, categoryId: String,
+    func createTodo(title: String, content: String, editDate: Date, categoryId: String, isDone: Bool,
                     _ completion: @escaping (Result<Void, Error>) -> ()) {
         db.collection("todoList").addDocument(data: [
             "title": title,
@@ -112,8 +113,9 @@ struct FirestoreRepositoryImpl: FirestoreRepository {
                     guard let title = doc.data()["title"] as? String,
                         let content = doc.data()["content"] as? String,
                         let editDate = (doc.data()["editDate"] as? Timestamp)?.dateValue(),
-                        let categoryId = doc.data()["categoryId"] as? String else { return nil }
-                    return Todo(id: doc.documentID, title: title, content: content, editDate: editDate, categoryId: categoryId)
+                        let categoryId = doc.data()["categoryId"] as? String,
+                        let isDone = doc.data()["isDone"] as? Bool else { return nil }
+                    return Todo(id: doc.documentID, title: title, content: content, editDate: editDate, categoryId: categoryId, isDone: isDone)
                 })
                 completion(.success(categories ?? []))
             }
@@ -131,6 +133,18 @@ struct FirestoreRepositoryImpl: FirestoreRepository {
                 completion(.failure(error))
             } else {
                 completion(.success(()))
+            }
+        }
+    }
+
+    func updateTodoStatus(_ todo: Todo, _ completion: ((Result<Void, Error>) -> ())?) {
+        db.collection("todoList").document(todo.id).setData( [
+            "isDone": todo.isDone,
+        ]) { error in
+            if let error = error {
+                completion?(.failure(error))
+            } else {
+                completion?(.success(()))
             }
         }
     }
