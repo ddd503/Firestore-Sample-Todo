@@ -10,11 +10,12 @@ import Foundation
 import FirebaseFirestore
 
 protocol FireStoreRepository {
-    func createCategory(_ category: Category, _ completion: @escaping (Result<Void, Error>) -> ())
+    func createCategory(title: String, editDate: Date, _ completion: @escaping (Result<Void, Error>) -> ())
     func readCategories(_ completion: @escaping (Result<[Category], Error>) -> ())
     func updateCategory(_ category: Category, _ completion: @escaping (Result<Void, Error>) -> ())
     func deleteCategory(by id: String, _ completion: @escaping (Result<Void, Error>) -> ())
-    func createTodo(_ todo: Todo, _ completion: @escaping (Result<Void, Error>) -> ())
+    func createTodo(title: String, content: String, editDate: Date, category: Category,
+                    _ completion: @escaping (Result<Void, Error>) -> ())
     func readTodoList(with categoryId: Int, _ completion: @escaping (Result<[Todo], Error>) -> ())
     func updateTodo(_ todo: Todo, _ completion: @escaping (Result<Void, Error>) -> ())
     func deleteTodo(by id: String, _ completion: @escaping (Result<Void, Error>) -> ())
@@ -24,10 +25,10 @@ struct FireStoreRepositoryImpl: FireStoreRepository {
 
     private let db = Firestore.firestore()
 
-    func createCategory(_ category: Category, _ completion: @escaping (Result<Void, Error>) -> ()) {
+    func createCategory(title: String, editDate: Date, _ completion: @escaping (Result<Void, Error>) -> ()) {
         db.collection("categories").addDocument(data: [
-            "title": category.title,
-            "editDate": category.editDate
+            "title": title,
+            "editDate": editDate
         ]) { error in
             if let error = error {
                 completion(.failure(error))
@@ -38,7 +39,7 @@ struct FireStoreRepositoryImpl: FireStoreRepository {
     }
 
     func readCategories(_ completion: @escaping (Result<[Category], Error>) -> ()) {
-        db.collection("categories").getDocuments { snapshot, error in
+        db.collection("categories").order(by: "editDate", descending: false).getDocuments { snapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -75,12 +76,13 @@ struct FireStoreRepositoryImpl: FireStoreRepository {
         }
     }
 
-    func createTodo(_ todo: Todo, _ completion: @escaping (Result<Void, Error>) -> ()) {
+    func createTodo(title: String, content: String, editDate: Date, category: Category,
+                    _ completion: @escaping (Result<Void, Error>) -> ()) {
         db.collection("todoList").addDocument(data: [
-            "title": todo.title,
-            "content": todo.content,
-            "category": todo.category,
-            "editDate": todo.editDate
+            "title": title,
+            "content": content,
+            "editDate": editDate,
+            "category": category
         ]) { error in
             if let error = error {
                 completion(.failure(error))

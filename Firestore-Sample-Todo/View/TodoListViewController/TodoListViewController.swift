@@ -13,14 +13,26 @@ final class TodoListViewController: UIViewController {
     @IBOutlet weak private var categoryHeaderBaseView: UIView!
     private var todoListPagingVC: TodoListPagingViewController!
     private var categoryHeaderView: CategoryHeaderView!
-    var categories = [Category]()
+//    var categories = [Category]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        categoryHeaderView = CategoryHeaderView.make(frame: CGRect(origin: .zero, size: categoryHeaderBaseView.frame.size),
-                                                     categoryList: categories, selectCategoryTitleColor: .red)
-        categoryHeaderView.delegate = self
-        categoryHeaderBaseView.addSubview(categoryHeaderView)
+        let repo = FireStoreRepositoryImpl()
+        repo.readCategories { result in
+            switch result {
+            case .success(let categories):
+                print("成功: \(categories)")
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.categoryHeaderView = CategoryHeaderView.make(frame: CGRect(origin: .zero, size: self.categoryHeaderBaseView.frame.size),
+                                                                 categoryList: categories, selectCategoryTitleColor: .red)
+                    self.categoryHeaderView.delegate = self
+                    self.categoryHeaderBaseView.addSubview(self.categoryHeaderView)
+                }
+            case .failure(let error):
+                print("失敗：\(error.localizedDescription)")
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -38,7 +50,7 @@ final class TodoListViewController: UIViewController {
 
     @IBAction func didTapAdd(sender: UIButton) {
         let repo = FireStoreRepositoryImpl()
-        repo.createCategory(Category(id: "", title: "やること")) { result in
+        repo.createCategory(title: "やること", editDate: Date()) { result in
             switch result {
             case .success(_):
                 print("成功")

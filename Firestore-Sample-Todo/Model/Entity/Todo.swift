@@ -10,16 +10,16 @@ import Foundation
 
 struct Todo {
     let id: String
-    let category: Category
     let title: String
     let content: String
     let editDate: Date
+    let category: Category
 
-    init(id: String = "", category: Category, title: String, content: String = "", editDate: Date = Date()) {
+    init(id: String = "", title: String, content: String = "", editDate: Date = Date(), category: Category) {
         self.id = id
-        self.category = category
         self.title = title
         self.content = content
         self.editDate = editDate
+        self.category = category
     }
 }
