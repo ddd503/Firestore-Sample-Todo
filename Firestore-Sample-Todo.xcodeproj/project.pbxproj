@@ -185,6 +185,23 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		45AC8D9124666A6100B2A357 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				45E85360245F0F08009E35C1 /* FireStoreRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		45AC8D9224666A7C00B2A357 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				45947F9A246020750089C793 /* Todo.swift */,
+				45AC8D8F2465CE9800B2A357 /* Category.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		45E85358245F0CB8009E35C1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,9 +222,8 @@
 		45E8535A245F0CBD009E35C1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				45E85360245F0F08009E35C1 /* FireStoreRepository.swift */,
-				45947F9A246020750089C793 /* Todo.swift */,
-				45AC8D8F2465CE9800B2A357 /* Category.swift */,
+				45AC8D9224666A7C00B2A357 /* Entity */,
+				45AC8D9124666A6100B2A357 /* Repository */,
 			);
 			path = Model;
 			sourceTree = "<group>";
