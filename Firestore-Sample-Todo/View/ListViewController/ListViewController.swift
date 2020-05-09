@@ -18,15 +18,17 @@ final class ListViewController: UIViewController {
         }
     }
 
+    let categoryId: String
     private var todoList = [Todo]()
 
-    init(todoList: [Todo]) {
+    init(categoryId: String, todoList: [Todo]) {
+        self.categoryId = categoryId
         self.todoList = todoList
         super.init(nibName: "ListViewController", bundle: .main)
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
 
 }

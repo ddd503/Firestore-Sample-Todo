@@ -9,42 +9,42 @@
 import UIKit
 
 protocol TodoListPagingViewControllerDelegate: AnyObject {
-    func didPagingForSwipe(pageId: Int)
+    func didPagingForSwipe(pageId: String)
 }
 
 class TodoListPagingViewController: UIPageViewController {
 
-    private var vcArray = [UIViewController]()
+    private var listVCArray = [ListViewController]()
     private var pageIndex = 0
     weak var todoListPagingVCDelegate: TodoListPagingViewControllerDelegate?
 
-    func setup(vcArray: [UIViewController]) {
+    func setup(listVCArray: [ListViewController]) {
         self.dataSource = self
         self.delegate = self
-        self.vcArray = vcArray
-        setViewControllers([vcArray[pageIndex]], direction: .forward, animated: true, completion: nil)
+        self.listVCArray = listVCArray
+        setViewControllers([listVCArray[pageIndex]], direction: .forward, animated: true, completion: nil)
     }
 
-    func setPage(at menuId: Int) {
-        guard let nextPageIndex = pageIndex(at: menuId) else { return }
+    func setPage(at categoryId: String) {
+        guard let nextPageIndex = pageIndex(at: categoryId) else { return }
         let direction: NavigationDirection = nextPageIndex > pageIndex ? .forward : .reverse
         pageIndex = nextPageIndex
-        setViewControllers([vcArray[nextPageIndex]], direction: direction, animated: true, completion: nil)
+        setViewControllers([listVCArray[nextPageIndex]], direction: direction, animated: true, completion: nil)
     }
 
-    private func pageIndex(at menuId: Int) -> Int? {
-        vcArray.firstIndex(where: { $0.view.tag == menuId })
+    private func pageIndex(at categoryId: String) -> Int? {
+        listVCArray.firstIndex(where: { $0.categoryId == categoryId })
     }
 }
 
 extension TodoListPagingViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let nextVC = vcArray[safe: pageIndex - 1] else { return nil }
+        guard let nextVC = listVCArray[safe: pageIndex - 1] else { return nil }
         return nextVC
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let nextVC = vcArray[safe: pageIndex + 1] else { return nil }
+        guard let nextVC = listVCArray[safe: pageIndex + 1] else { return nil }
         return nextVC
     }
 }
@@ -53,10 +53,10 @@ extension TodoListPagingViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool,
                             previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         // setViewControllersを呼んでの遷移の場合は呼ばれない、スワイプのみ
-        if finished, completed, let currentVC = pageViewController.viewControllers?.first,
-            let currentPageIndex = pageIndex(at: currentVC.view.tag) {
+        if finished, completed, let currentVC = pageViewController.viewControllers?.first as? ListViewController,
+            let currentPageIndex = pageIndex(at: currentVC.categoryId) {
             pageIndex = currentPageIndex
-            todoListPagingVCDelegate?.didPagingForSwipe(pageId: currentVC.view.tag)
+            todoListPagingVCDelegate?.didPagingForSwipe(pageId: currentVC.categoryId)
         }
     }
 }

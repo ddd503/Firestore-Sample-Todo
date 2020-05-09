@@ -1,0 +1,6 @@
+framework module Pods_Firestore_Sample_Todo {
+  umbrella header "Pods-Firestore-Sample-Todo-umbrella.h"
+
+  export *
+  module * { export * }
+}

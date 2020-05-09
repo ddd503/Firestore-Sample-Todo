@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>167189573950-0o2tk2dgu4oo0t6p55l8isgue5g4lhu6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.167189573950-0o2tk2dgu4oo0t6p55l8isgue5g4lhu6</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCGz41Seha9R3Kv3hRDfBZMcJUkiKKaFRo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>167189573950</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kawahara.Firestore-Sample-Todo</string>
+	<key>PROJECT_ID</key>
+	<string>firestore-sample-todo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>firestore-sample-todo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:167189573950:ios:bc152410de3fc03538bc6f</string>
+	<key>DATABASE_URL</key>
+	<string>https://firestore-sample-todo.firebaseio.com</string>
+</dict>
+</plist>

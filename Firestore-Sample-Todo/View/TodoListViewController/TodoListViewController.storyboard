@@ -28,12 +28,40 @@
                                     <segue destination="e1a-1W-nN1" kind="embed" identifier="EmbedPageVC" id="XDg-ax-rsQ"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p70-OH-byx">
+                                <rect key="frame" x="284" y="734" width="80" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="98n-5m-Nya"/>
+                                    <constraint firstAttribute="height" constant="80" id="y6d-sr-nBb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" backgroundImage="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapAddWithSender:" destination="gAN-6G-9fY" eventType="touchUpInside" id="q99-Io-QTA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5t-Eh-mmA">
+                                <rect key="frame" x="50" y="731" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="i0Z-ml-UGw"/>
+                                    <constraint firstAttribute="width" constant="80" id="zDY-Uw-381"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" backgroundImage="arrow.clockwise" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapRefreshWithSender:" destination="gAN-6G-9fY" eventType="touchUpInside" id="bnX-iG-nnt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Gix-Y5-EOd" firstAttribute="trailing" secondItem="ZQA-On-6ge" secondAttribute="trailing" id="9p4-eu-fVj"/>
                             <constraint firstItem="cBq-Ej-ZDk" firstAttribute="width" secondItem="ygL-gr-CI7" secondAttribute="width" id="FnL-Q2-4bx"/>
+                            <constraint firstItem="Gix-Y5-EOd" firstAttribute="bottom" secondItem="p70-OH-byx" secondAttribute="bottom" constant="50" id="Frz-u1-ZgK"/>
                             <constraint firstItem="cBq-Ej-ZDk" firstAttribute="top" secondItem="Gix-Y5-EOd" secondAttribute="top" id="G6O-mY-tS3"/>
+                            <constraint firstItem="H5t-Eh-mmA" firstAttribute="leading" secondItem="Gix-Y5-EOd" secondAttribute="leading" constant="50" id="RSP-im-mtz"/>
+                            <constraint firstItem="Gix-Y5-EOd" firstAttribute="bottom" secondItem="H5t-Eh-mmA" secondAttribute="bottom" constant="50" id="Ry6-4z-g5x"/>
+                            <constraint firstItem="Gix-Y5-EOd" firstAttribute="trailing" secondItem="p70-OH-byx" secondAttribute="trailing" constant="50" id="ajx-yB-gWt"/>
                             <constraint firstAttribute="bottom" secondItem="ZQA-On-6ge" secondAttribute="bottom" id="bFi-RH-2H4"/>
                             <constraint firstItem="cBq-Ej-ZDk" firstAttribute="centerX" secondItem="ygL-gr-CI7" secondAttribute="centerX" id="yoY-F6-wVP"/>
                             <constraint firstItem="ZQA-On-6ge" firstAttribute="leading" secondItem="Gix-Y5-EOd" secondAttribute="leading" id="zdb-mM-RJD"/>
@@ -77,4 +105,8 @@
             <point key="canvasLocation" x="2001" y="184"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+    </resources>
 </document>

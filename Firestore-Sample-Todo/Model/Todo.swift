@@ -9,12 +9,17 @@
 import Foundation
 
 struct Todo {
+    let id: String
     let category: Category
     let title: String
     let content: String
-}
+    let editDate: Date
 
-struct Category {
-    let id: Int
-    let title: String
+    init(id: String = "", category: Category, title: String, content: String = "", editDate: Date = Date()) {
+        self.id = id
+        self.category = category
+        self.title = title
+        self.content = content
+        self.editDate = editDate
+    }
 }

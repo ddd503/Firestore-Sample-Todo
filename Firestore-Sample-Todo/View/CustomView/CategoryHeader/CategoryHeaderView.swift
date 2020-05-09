@@ -55,7 +55,7 @@ final class CategoryHeaderView: UIView {
         selectCategory(at: firstSelectIndexPath, animated: false)
     }
     
-    func selectCategory(at categoryId: Int) {
+    func selectCategory(at categoryId: String) {
         guard let selectIndexPath = categoryIndex(at: categoryId) else { return }
         deselectCategoryIfNeeded()
         selectCategory(at: selectIndexPath)
@@ -70,7 +70,7 @@ final class CategoryHeaderView: UIView {
                       height: bottomLineViewHeight)
     }
     
-    private func categoryIndex(at categoryId: Int) -> IndexPath? {
+    private func categoryIndex(at categoryId: String) -> IndexPath? {
         let result = categoryList.firstIndex { $0.id == categoryId }
         guard let index = result else { return nil }
         return IndexPath(row: index, section: 0)
