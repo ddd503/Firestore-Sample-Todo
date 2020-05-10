@@ -13,6 +13,10 @@
             <rect key="frame" x="0.0" y="0.0" width="348" height="558"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yo-B0-ahm">
+                    <rect key="frame" x="0.0" y="440" width="348" height="118"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umJ-g8-dvI">
                     <rect key="frame" x="248" y="508" width="80" height="40"/>
                     <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -53,23 +57,27 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z3t-B5-Ez1">
                     <rect key="frame" x="0.0" y="0.0" width="348" height="440"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="uh8-0S-4f6" appends="YES" id="aIl-YM-feI"/>
                     </connections>
                 </view>
             </subviews>
-            <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="5h2-cx-4bb" firstAttribute="top" secondItem="Z3t-B5-Ez1" secondAttribute="bottom" id="33w-mU-M0m"/>
+                <constraint firstItem="9yo-B0-ahm" firstAttribute="top" secondItem="Z3t-B5-Ez1" secondAttribute="bottom" id="67a-WN-YYa"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5h2-cx-4bb" secondAttribute="trailing" id="9VB-uN-Jtl"/>
+                <constraint firstAttribute="bottom" secondItem="9yo-B0-ahm" secondAttribute="bottom" id="Aky-GH-DHC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9yo-B0-ahm" secondAttribute="trailing" id="CR0-8W-bIy"/>
                 <constraint firstItem="umJ-g8-dvI" firstAttribute="top" secondItem="5h2-cx-4bb" secondAttribute="bottom" constant="15" id="DoG-5D-vqV"/>
                 <constraint firstItem="Z3t-B5-Ez1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="N6Z-7H-sO7"/>
                 <constraint firstItem="Z3t-B5-Ez1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="RXP-Q3-Nxt"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Z3t-B5-Ez1" secondAttribute="trailing" id="gaS-9a-VUX"/>
                 <constraint firstItem="5h2-cx-4bb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="kG4-zM-07i"/>
                 <constraint firstAttribute="bottom" secondItem="umJ-g8-dvI" secondAttribute="bottom" constant="10" id="n7k-cc-0sc"/>
+                <constraint firstItem="9yo-B0-ahm" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="oTF-Dl-ct6"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="umJ-g8-dvI" secondAttribute="trailing" constant="20" id="q2z-Fc-Z9O"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
