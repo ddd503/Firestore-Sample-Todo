@@ -54,6 +54,7 @@ class CreateTodoView: UIView {
             inputTextView.resignFirstResponder()
         } else {
             delegate?.tappedCreateButton(content: inputTextView.text) { [weak self] in
+                self?.inputTextView.text = ""
                 self?.endEditing(true)
             }
         }

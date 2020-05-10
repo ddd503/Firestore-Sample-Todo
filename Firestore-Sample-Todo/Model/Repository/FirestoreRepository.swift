@@ -16,7 +16,7 @@ protocol FirestoreRepository {
     func deleteCategory(by id: String, _ completion: @escaping (Result<Void, Error>) -> ())
     func createTodo(title: String, content: String, editDate: Date, categoryId: String, isDone: Bool,
                     _ completion: @escaping (Result<Void, Error>) -> ())
-    func readTodoList(with categoryId: Int, _ completion: @escaping (Result<[Todo], Error>) -> ())
+    func readTodoList(with categoryId: String, _ completion: @escaping (Result<[Todo], Error>) -> ())
     func readAllCategoryTodoList(_ completion: @escaping (Result<[Todo], Error>) -> ())
     func updateTodo(_ todo: Todo, _ completion: @escaping (Result<Void, Error>) -> ())
     func updateTodoStatus(_ todo: Todo, _ completion: ((Result<Void, Error>) -> ())?)
@@ -95,12 +95,20 @@ struct FirestoreRepositoryImpl: FirestoreRepository {
         }
     }
 
-    func readTodoList(with categoryId: Int, _ completion: @escaping (Result<[Todo], Error>) -> ()) {
-        db.collection("todoList").getDocuments { snapshot, error in
+    func readTodoList(with categoryId: String, _ completion: @escaping (Result<[Todo], Error>) -> ()) {
+        db.collection("todoList").whereField("categoryId", isEqualTo: categoryId).getDocuments { snapshot, error in
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success([]))
+                let todoList = snapshot?.documents.compactMap({ doc -> Todo? in
+                    guard let title = doc.data()["title"] as? String,
+                        let content = doc.data()["content"] as? String,
+                        let editDate = (doc.data()["editDate"] as? Timestamp)?.dateValue(),
+                        let categoryId = doc.data()["categoryId"] as? String,
+                        let isDone = doc.data()["isDone"] as? Bool else { return nil }
+                    return Todo(id: doc.documentID, title: title, content: content, editDate: editDate, categoryId: categoryId, isDone: isDone)
+                })
+                completion(.success(todoList ?? []))
             }
         }
     }
@@ -110,7 +118,7 @@ struct FirestoreRepositoryImpl: FirestoreRepository {
             if let error = error {
                 completion(.failure(error))
             } else {
-                let categories = snapshot?.documents.compactMap({ doc -> Todo? in
+                let todoList = snapshot?.documents.compactMap({ doc -> Todo? in
                     guard let title = doc.data()["title"] as? String,
                         let content = doc.data()["content"] as? String,
                         let editDate = (doc.data()["editDate"] as? Timestamp)?.dateValue(),
@@ -118,7 +126,7 @@ struct FirestoreRepositoryImpl: FirestoreRepository {
                         let isDone = doc.data()["isDone"] as? Bool else { return nil }
                     return Todo(id: doc.documentID, title: title, content: content, editDate: editDate, categoryId: categoryId, isDone: isDone)
                 })
-                completion(.success(categories ?? []))
+                completion(.success(todoList ?? []))
             }
         }
     }
@@ -140,7 +148,11 @@ struct FirestoreRepositoryImpl: FirestoreRepository {
 
     func updateTodoStatus(_ todo: Todo, _ completion: ((Result<Void, Error>) -> ())?) {
         db.collection("todoList").document(todo.id).setData( [
-            "isDone": todo.isDone,
+            "title": todo.title,
+            "content": todo.content,
+            "editDate": todo.editDate,
+            "categoryId": todo.categoryId,
+            "isDone": todo.isDone
         ]) { error in
             if let error = error {
                 completion?(.failure(error))

@@ -154,7 +154,14 @@ extension TodoListViewController: CreateTodoViewDelegate {
                                         guard let self = self else { return }
                                         switch result {
                                         case .success(_):
-                                            print("fetch")
+                                            self.firestoreRepository.readTodoList(with: currentListVC.categoryId) { result in
+                                                switch result {
+                                                case .success(let todoList):
+                                                    currentListVC.refreshTodoList(todoList)
+                                                case .failure(let error):
+                                                    self.showErorrAlert(error: error)
+                                                }
+                                            }
                                         case .failure(let error):
                                             self.showErorrAlert(error: error)
                                         }

@@ -41,6 +41,12 @@ final class ListViewController: UIViewController {
         topBorder.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
         view.layer.addSublayer(topBorder)
     }
+
+    func refreshTodoList(_ todoList: [Todo]) {
+        self.todoList = todoList
+        listView.reloadData()
+        listView.isHidden = todoList.isEmpty
+    }
 }
 
 extension ListViewController: UITableViewDataSource {
