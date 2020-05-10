@@ -24,6 +24,7 @@ final class TodoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(createTodoView)
+        createTodoView.delegate = self
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -135,7 +136,25 @@ extension TodoListViewController: CategoryHeaderViewDelegate {
 }
 
 extension TodoListViewController: CreateTodoViewDelegate {
-    func tappedCreateButton(content: String) {
+    func tappedCreateButton(content: String, _ completion: @escaping () -> ()) {
+        guard let currentListVC = todoListPagingVC.viewControllers?.first as? ListViewController else {
+            showErorrAlert()
+            completion()
+            return
+        }
 
+        firestoreRepository.createTodo(title: content, content: "",
+                                       editDate: Date(),
+                                       categoryId: currentListVC.categoryId,
+                                       isDone: false) { [weak self] result in
+                                        completion()
+                                        guard let self = self else { return }
+                                        switch result {
+                                        case .success(_):
+                                            print("fetch")
+                                        case .failure(let error):
+                                            self.showErorrAlert(error: error)
+                                        }
+        }
     }
 }

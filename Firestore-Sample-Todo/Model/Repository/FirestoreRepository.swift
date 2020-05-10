@@ -84,7 +84,8 @@ struct FirestoreRepositoryImpl: FirestoreRepository {
             "title": title,
             "content": content,
             "editDate": editDate,
-            "categoryId": categoryId
+            "categoryId": categoryId,
+            "isDone": isDone
         ]) { error in
             if let error = error {
                 completion(.failure(error))

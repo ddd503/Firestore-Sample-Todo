@@ -33,6 +33,13 @@ final class ListViewController: UIViewController {
         return nil
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let topBorder = CALayer()
+        topBorder.frame = CGRect(origin: .zero, size: CGSize(width: view.bounds.width, height: 1))
+        topBorder.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+        view.layer.addSublayer(topBorder)
+    }
 }
 
 extension ListViewController: UITableViewDataSource {
