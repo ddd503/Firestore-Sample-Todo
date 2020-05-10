@@ -10,11 +10,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CreateTodoView" customModule="Firestore_Sample_Todo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="455" height="116"/>
+            <rect key="frame" x="0.0" y="0.0" width="348" height="558"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umJ-g8-dvI">
-                    <rect key="frame" x="355" y="66" width="80" height="40"/>
+                    <rect key="frame" x="248" y="508" width="80" height="40"/>
                     <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="4Cw-qc-fNA"/>
@@ -29,10 +29,10 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5h2-cx-4bb">
-                    <rect key="frame" x="0.0" y="10" width="455" height="43"/>
+                    <rect key="frame" x="0.0" y="440" width="348" height="53"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zQ3-LL-AFe">
-                            <rect key="frame" x="20" y="5" width="415" height="33"/>
+                            <rect key="frame" x="20" y="15" width="308" height="33"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="33" id="GG0-Q4-nAR"/>
@@ -46,16 +46,28 @@
                     <constraints>
                         <constraint firstItem="zQ3-LL-AFe" firstAttribute="leading" secondItem="5h2-cx-4bb" secondAttribute="leading" constant="20" id="0FP-gm-oGn"/>
                         <constraint firstAttribute="bottom" secondItem="zQ3-LL-AFe" secondAttribute="bottom" constant="5" id="6U0-98-udP"/>
-                        <constraint firstAttribute="height" constant="43" id="8k9-t6-aAN"/>
+                        <constraint firstAttribute="height" constant="53" id="8k9-t6-aAN"/>
                         <constraint firstAttribute="trailing" secondItem="zQ3-LL-AFe" secondAttribute="trailing" constant="20" id="ZNl-Gu-8w1"/>
-                        <constraint firstItem="zQ3-LL-AFe" firstAttribute="top" secondItem="5h2-cx-4bb" secondAttribute="top" constant="5" id="ftq-gm-V94"/>
+                        <constraint firstItem="zQ3-LL-AFe" firstAttribute="top" secondItem="5h2-cx-4bb" secondAttribute="top" constant="15" id="ftq-gm-V94"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z3t-B5-Ez1">
+                    <rect key="frame" x="0.0" y="0.0" width="348" height="440"/>
+                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="uh8-0S-4f6" appends="YES" id="aIl-YM-feI"/>
+                    </connections>
+                </view>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="5h2-cx-4bb" firstAttribute="top" secondItem="Z3t-B5-Ez1" secondAttribute="bottom" id="33w-mU-M0m"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5h2-cx-4bb" secondAttribute="trailing" id="9VB-uN-Jtl"/>
-                <constraint firstItem="5h2-cx-4bb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="jiy-lT-Ff7"/>
+                <constraint firstItem="umJ-g8-dvI" firstAttribute="top" secondItem="5h2-cx-4bb" secondAttribute="bottom" constant="15" id="DoG-5D-vqV"/>
+                <constraint firstItem="Z3t-B5-Ez1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="N6Z-7H-sO7"/>
+                <constraint firstItem="Z3t-B5-Ez1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="RXP-Q3-Nxt"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Z3t-B5-Ez1" secondAttribute="trailing" id="gaS-9a-VUX"/>
                 <constraint firstItem="5h2-cx-4bb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="kG4-zM-07i"/>
                 <constraint firstAttribute="bottom" secondItem="umJ-g8-dvI" secondAttribute="bottom" constant="10" id="n7k-cc-0sc"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="umJ-g8-dvI" secondAttribute="trailing" constant="20" id="q2z-Fc-Z9O"/>
@@ -64,11 +76,18 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="actionButton" destination="umJ-g8-dvI" id="gdQ-GE-TFJ"/>
+                <outlet property="backgroundView" destination="Z3t-B5-Ez1" id="BGS-fA-SAx"/>
                 <outlet property="inputTextView" destination="zQ3-LL-AFe" id="Xc2-VT-dC5"/>
+                <outlet property="inputTextViewContainer" destination="5h2-cx-4bb" id="5a5-S3-dfv"/>
                 <outlet property="inputTextViewContainerHeightConstraint" destination="8k9-t6-aAN" id="GOV-Kd-NR0"/>
                 <outlet property="inputTextViewHeightConstraint" destination="GG0-Q4-nAR" id="cGu-Bl-dgG"/>
             </connections>
-            <point key="canvasLocation" x="167.39130434782609" y="279.91071428571428"/>
+            <point key="canvasLocation" x="89.855072463768124" y="309.375"/>
         </view>
+        <tapGestureRecognizer id="uh8-0S-4f6">
+            <connections>
+                <action selector="tappedBackgroundView:" destination="iN0-l3-epB" id="khn-aq-gQg"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

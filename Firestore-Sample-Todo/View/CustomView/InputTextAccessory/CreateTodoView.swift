@@ -17,7 +17,9 @@ class CreateTodoView: UIView {
     @IBOutlet weak private var inputTextView: UITextView! {
         didSet { inputTextView.delegate = self }
     }
+    @IBOutlet weak private var inputTextViewContainer: UIView!
     @IBOutlet weak private var actionButton: UIButton!
+    @IBOutlet weak private var backgroundView: UIView!
     @IBOutlet weak var inputTextViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var inputTextViewContainerHeightConstraint: NSLayoutConstraint!
 
@@ -44,7 +46,7 @@ class CreateTodoView: UIView {
         let topBorder = CALayer()
         topBorder.frame = CGRect(origin: .zero, size: CGSize(width: bounds.width, height: 1))
         topBorder.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
-        layer.addSublayer(topBorder)
+        inputTextViewContainer.layer.addSublayer(topBorder)
     }
 
     @IBAction func tappedActionButton(sender: UIButton) {
@@ -57,13 +59,17 @@ class CreateTodoView: UIView {
         }
     }
 
+    @IBAction func tappedBackgroundView(_ sender: UITapGestureRecognizer) {
+        endEditing(true)
+    }
+
     func startInputTodo() {
         inputTextView.becomeFirstResponder()
     }
 
     private func adjustInputTextViewFrameWhenTextViewDidChange(variableHeight: CGFloat) {
         // IB側のinputTextViewに対する制約を再現する（一度autoLayoutを解除するため）
-        inputTextView.frame = CGRect(x: 20, y: 5, width: self.frame.width - 40, height: variableHeight)
+        inputTextView.frame = CGRect(x: 20, y: 15, width: self.frame.width - 40, height: variableHeight)
     }
 }
 
@@ -92,14 +98,10 @@ extension CreateTodoView: UITextViewDelegate {
             if resizedHeight > currentTextViewHeight {
                 let addingHeight = resizedHeight - currentTextViewHeight
                 inputTextViewContainerHeightConstraint.constant += addingHeight
-                frame.size.height += addingHeight
-                frame.origin.y -= addingHeight
                 currentTextViewHeight = resizedHeight
             } else if resizedHeight < currentTextViewHeight {
                 let subtractingHeight = currentTextViewHeight - resizedHeight
                 inputTextViewContainerHeightConstraint.constant -= subtractingHeight
-                frame.size.height -= subtractingHeight
-                frame.origin.y += subtractingHeight
                 currentTextViewHeight = resizedHeight
             }
         } else {

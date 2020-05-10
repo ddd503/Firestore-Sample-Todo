@@ -17,7 +17,7 @@ final class TodoListViewController: UIViewController {
         CreateTodoView.make(frame: CGRect(x: 0,
                                           y: view.bounds.height,
                                           width: view.bounds.width,
-                                          height: view.bounds.height * 0.15))
+                                          height: view.bounds.height))
     }()
     private let firestoreRepository = FirestoreRepositoryImpl()
 
@@ -26,15 +26,18 @@ final class TodoListViewController: UIViewController {
         view.addSubview(createTodoView)
         createTodoView.delegate = self
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
         
         firestoreRepository.readCategories { result in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 switch result {
                 case .success(let categories):
-                    self.categoryHeaderView = CategoryHeaderView.make(frame: CGRect(origin: .zero, size: self.categoryHeaderBaseView.frame.size),
+                    self.categoryHeaderView = CategoryHeaderView.make(frame: CGRect(origin: .zero,
+                                                                                    size: self.categoryHeaderBaseView.frame.size),
                                                                       categories: categories,
                                                                       selectCategoryTitleColor: .red)
                     self.categoryHeaderView.delegate = self
