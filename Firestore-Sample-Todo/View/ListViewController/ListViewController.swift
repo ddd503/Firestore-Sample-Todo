@@ -35,6 +35,7 @@ final class ListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        listView.isHidden = todoList.isEmpty
         let topBorder = CALayer()
         topBorder.frame = CGRect(origin: .zero, size: CGSize(width: view.bounds.width, height: 1))
         topBorder.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor

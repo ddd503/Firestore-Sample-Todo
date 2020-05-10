@@ -29,10 +29,10 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p70-OH-byx">
-                                <rect key="frame" x="284" y="734" width="80" height="76"/>
+                                <rect key="frame" x="304" y="754" width="60" height="56"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="98n-5m-Nya"/>
-                                    <constraint firstAttribute="height" constant="80" id="y6d-sr-nBb"/>
+                                    <constraint firstAttribute="width" constant="60" id="98n-5m-Nya"/>
+                                    <constraint firstAttribute="height" constant="60" id="y6d-sr-nBb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" backgroundImage="plus" catalog="system"/>

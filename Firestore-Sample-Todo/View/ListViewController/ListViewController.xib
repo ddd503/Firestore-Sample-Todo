@@ -18,6 +18,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Todoはありません" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBh-Og-faR">
+                    <rect key="frame" x="127.5" y="369.5" width="159" height="23"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oiu-nx-pTX">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -25,9 +31,11 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="UBh-Og-faR" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.85" id="GZ5-vQ-biG"/>
                 <constraint firstItem="oiu-nx-pTX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Nk8-9b-Wsq"/>
                 <constraint firstAttribute="bottom" secondItem="oiu-nx-pTX" secondAttribute="bottom" id="VLr-LB-0TQ"/>
                 <constraint firstItem="oiu-nx-pTX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="f7S-Ka-6gu"/>
+                <constraint firstItem="UBh-Og-faR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fld-CL-KmT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oiu-nx-pTX" secondAttribute="trailing" id="gnG-rX-go3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
